@@ -16,3 +16,44 @@ ggplot(data= penguins) +
 ggplot(data = diamonds) +
   geom_bar(mapping = aes (x=cut, fill = clarity))
   #geom_bar(mapping = aes (x=cut, colour = cut))
+#subset 
+
+ggplot(data= penguins, aes(x=flipper_length_mm,y=body_mass_g))+
+  geom_point(aes(color=species))+
+  facet_wrap(~species)
+
+#subset 
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x=color,fill=cut)) + 
+  facet_wrap(~cut)
+#subset secter 
+ggplot(data=penguins)+ 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  facet_grid(sex~species)
+#subset scatterplot
+ggplot(data=penguins)+ 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  facet_grid(~species)
+
+# We can add a title and subtitle using the labs function
+ggplot(data=penguins)+ 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  labs(title="plamer penguins: Body Mass vs. Flipper Length", subtitle = "sample of three penguin species")
+# We can add a title and subtitle using the labs function. We can also add caption using caption function
+ggplot(data=penguins)+ 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  labs(title="plamer penguins: Body Mass vs. Flipper Length", subtitle = "sample of three penguin species",
+      caption="Data collected by Dr Kristen Gorman")
+
+
+#annotate we customize text
+ggplot(data=penguins)+ 
+  geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,color=species))+
+  labs(title="plamer penguins: Body Mass vs. Flipper Length", subtitle = "sample of three penguin species",
+      caption="Data collected by Dr Kristen Gorman")+
+  annotate("text", x=220,y=3500,label="The Gentoos are the largerst",color="purple",
+           fontface="bold",size=4.5,angle=25)
+
+# we can save the image 
+ggsave("Three Penguin Spcies.png")
+
